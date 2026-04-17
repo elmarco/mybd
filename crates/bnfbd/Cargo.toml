@@ -1,0 +1,17 @@
+[package]
+name = "bnfbd"
+version = "0.1.0"
+edition = "2024"
+description = "Client library for the BnF (Bibliothèque nationale de France) SRU API"
+
+[dependencies]
+reqwest = { version = "0.13" }
+roxmltree = "0.20"
+thiserror = "2"
+tracing = "0.1"
+urlencoding = "2"
+
+[dev-dependencies]
+mockito = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

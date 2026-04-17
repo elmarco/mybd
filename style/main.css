@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@source "../src";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-indigo-accent: #7c8aff;
+    --color-indigo-accent-dark: #5a67d8;
+    --color-comic-blue: #2563eb;
+    --color-manga-purple: #9333ea;
+    --color-gn-green: #16a34a;
+}
+
+[data-nav-item].nav-focus {
+    box-shadow: inset 0 0 0 2px var(--color-indigo-accent);
+    border-radius: 0.75rem;
+}

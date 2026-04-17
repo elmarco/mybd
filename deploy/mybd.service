@@ -1,0 +1,41 @@
+[Unit]
+Description=mybd - comic collection tracker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/mybd
+ExecStart=%h/.cargo/bin/cargo-leptos serve --release
+EnvironmentFile=/opt/mybd/.env
+
+Restart=on-failure
+RestartSec=5
+
+# Sandboxing
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=false
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+
+# Network: only allow TCP/UDP (no raw sockets, netlink, etc.)
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+# Filesystem: read-only everywhere except the database and site dir
+ReadWritePaths=/opt/mybd
+
+# System call filter
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=default.target
