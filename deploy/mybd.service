@@ -1,0 +1,16 @@
+[Unit]
+Description=mybd - comic collection tracker
+After=network.target
+
+[Service]
+Type=simple
+User=mybd
+Group=mybd
+WorkingDirectory=/opt/mybd
+ExecStart=/opt/mybd/target/release/mybd
+EnvironmentFile=/opt/mybd/.env
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
